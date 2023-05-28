@@ -14,7 +14,7 @@ as you would with fetch or http.
 
 but we give you a nicer api and best practices to work with that kind of new tech.
 
-DIREKTSPEED is a Marketing leader and has had significatn impact on the most biggest part of
+DIREKTSPEED is a Marketing leader and has had significant impact on the most biggest part of
 the Internet the Porn Industrie. Thats where it has its roots we designed routing and CDN
 Concepts for the world wide most often served most high trafficed content in the whole world.
 A Much larger Scale as Google it self. We Know everything about high performance content delivery.
@@ -35,7 +35,7 @@ Your Browser Origin in fact is the server cloud-fs.zip can be seen as a referenc
 that you can clone and depend on. To Speed up your own Application Development Processes or Content Pipelines
 
 for example we offer First Class Wordpress Support so you can define a wordpress endpoint and the cloud-fs.zip 
-Plugin serveres a Secured Endpoint to the Wordpress installation. It also offers Migration helpers from and to 
+Plugin serves a Secured Endpoint to the Wordpress installation. It also offers Migration helpers from and to 
 Wordpress. To make Content InterOp Easy if you got existing wordpress content production pipelines.
 
 And no you do not need wordpress but wordpress is the most wide spread private used CMS today so we wanted
@@ -66,3 +66,6 @@ as also distribute it in realtime. We Invented formats and Methods to do so with
 Depending on cloud-fs.zip lets you feel again as a producer not as a victim of technologie. This way we give you again
 the Own your Own Data Abilitys in your hands and enable you to be the best Developer on Earth! May the FOrce be with you
 my frind. 
+
+THis allows you to run and deploy own zappier like services we offer anything that cloudflare or similar Cloud CDN providers
+offer but directly in your browser so you can use it with all services and from every device. 
