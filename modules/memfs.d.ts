@@ -1,3 +1,4 @@
+// @ts-ignore
 import { CancellationToken, Disposable, Event, FileChangeEvent, FileSearchOptions, FileSearchProvider, FileSearchQuery, FileStat, FileSystemProvider, FileType, Progress, ProviderResult, TextSearchOptions, TextSearchQuery, TextSearchProvider, TextSearchResult, Uri } from 'vscode';
 export declare class File implements FileStat {
     uri: Uri;
@@ -58,5 +59,6 @@ export declare class MemFS implements FileSystemProvider, FileSearchProvider, Te
     provideFileSearchResults(query: FileSearchQuery, _options: FileSearchOptions, _token: CancellationToken): ProviderResult<Uri[]>;
     private _findFiles;
     private _textDecoder;
+    // @ts-ignore
     provideTextSearchResults(query: TextSearchQuery, options: TextSearchOptions, progress: Progress<TextSearchResult>, _token: CancellationToken): TextSearchComplete;
 }
