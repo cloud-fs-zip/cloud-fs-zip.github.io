@@ -1,0 +1,31 @@
+{
+	"productConfiguration": {
+	  "nameShort": "Awesome Os cloud-fs",
+	  "nameLong": "Awesome Os cloud-fs",
+	  "applicationName": "cloud-fs",
+	  "dataFolderName": ".cloud-fs",
+	  "version": "1.75.0",
+	  "extensionsGallery": {
+		"serviceUrl": "https://open-vsx.org/vscode/gallery",
+		"itemUrl": "https://open-vsx.org/vscode/item",
+		"resourceUrlTemplate":
+		  "https://openvsxorg.blob.core.windows.net/resources/{publisher}/{name}/{version}/{path}"
+	  },
+	  "extensionEnabledApiProposals": {
+		"awesome-os.code-oss-cloud-fs": [
+		  "fileSearchProvider",
+		  "textSearchProvider"
+		]
+	  }
+	},
+	"folderUri": {
+	  "scheme": "memfs",
+	  "path": "/sample-folder"
+	},
+	"additionalBuiltinExtensions": [
+	  {
+		"scheme": "http",
+		"path": "/extensions/code-oss"
+	  }
+	]
+  }
