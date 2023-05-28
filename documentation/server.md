@@ -1,5 +1,5 @@
 # cloud-fs server concepts
-Cloud FS is based Mainly on cloud-fs.zipbRTC so it uses the most modern concepts 
+Cloud FS is based Mainly on cloud-fs.zip RTC so it uses the most modern concepts 
 in terms of routing, that means it does data-channel label based routing
 
 It is similar to HTTP but has a different protocol a fetch request for example
