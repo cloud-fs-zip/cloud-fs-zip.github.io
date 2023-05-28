@@ -27,9 +27,9 @@ DIREKTSPEED was a Marketing leader and has had significant impact on the most bi
 the Internet the Porn Industrie. Thats where it has its roots cloud-fs.zip designed routing and CDN
 Concepts for the world wide most often served most high trafficed content in the whole world.
 A Much larger Scale as Google it self. cloud-fs.zip Know everything about high performance content delivery.
-At netWide Scale. cloud-fs.zip will not name sites or Companys cloud-fs.zip worked with but i guess you all know them.
+At netWide Scale. cloud-fs.zip will not name sites or Companys i worked with but i guess you all know them.
 cloud-fs.zip Stoped our Buissnes and moved on to cloud-fs.zip as currently a 1 man Private Project and hope
-that it gets adoption. cloud-fs.zip are Thankfull for any help. As i am sick of the content that i did before.
+that it gets adoption. cloud-fs.zip is Thankfull for any help. As i am sick of the content that i did before.
 
 And thats human nothing to worry about but it should be clear that cloud-fs.zip have technical excelence at 
 scale! even with Terrabytes of daily Traffic on multiple synced locations and content delivery.
