@@ -60,5 +60,5 @@ const launch = (launch,readable,writable=new WritableStream({write([stdout,stder
     
 };
 
-// takes transform,stdin 
+// takes transform,stdin ,output
 globalThis.sharedWorkers[import.meta.url] = launch;
