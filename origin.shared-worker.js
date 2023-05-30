@@ -24,11 +24,11 @@ const readEverything =     new ReadableStream({ async start(progress){
 */
 
 sharedWorker.onconnect = ({ports:[port]}) => {
-    port.onmessage = ({ data: { run, ...input }}) => {    
+    port.onmessage = ({ data: { launchAndWatch, ...input }}) => {    
         if (run) {
             new ReadableStream({ start(stdin) {
                 stdin.enqueue(input);
-            }}).pipeThrough(new Function(`return ${run}`)(port)).pipeTo(new WritableStream({write(output){
+            }}).pipeThrough(new Function(`return ${launchAndWatch}`)(port)).pipeTo(new WritableStream({write(output){
                 // the receiver destructures id, [stdout,stderr] } = output
                 port.postMessage(output);
             }}))
