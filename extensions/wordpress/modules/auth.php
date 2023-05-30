@@ -1,4 +1,5 @@
 <?php
+define('ROOT_DIR', __DIR__);
 // https://www.php.net/manual/en/class.opensslcertificate.php
 // https://www.php.net/manual/en/class.opensslasymmetrickey.php
 
