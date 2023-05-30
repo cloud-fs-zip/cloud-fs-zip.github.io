@@ -29,7 +29,7 @@ const readEverything =     new ReadableStream({ async start(progress){
 
 kernel.onconnect = ({ports:[port]}) => {
     port.onmessage = async ({ data }) => {    
-        if (data.startsWith('new TransformStream(')) {
+        if (data.startsWith('function') || data.startsWith('()')) {
             new ReadableStream({ start(stdin) {
                 port.onmessage = (input) => stdin.enqueue(input);
             }}).pipeThrough(
@@ -39,7 +39,8 @@ kernel.onconnect = ({ports:[port]}) => {
                     port.postMessage(output);
                 }}))
         } else {
-            new Error('did you forget to postMessage("new TransformStream()")?')
+            // You can pass regular functions postMessage(fnName): TransformStream
+            new Error('did you forget to postMessage("()=>new TransformStream()")?')
         }
     }
 }
