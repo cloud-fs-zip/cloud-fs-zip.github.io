@@ -28,7 +28,7 @@ sharedWorker.onconnect = ({ports:[port]}) => {
         if (run) {
             new ReadableStream({ start(stdin) {
                 stdin.enqueue(input);
-            }}).pipeThrough(new Function(`return new TransformStream({transform:${transform},})`)(port)).pipeTo(new WritableStream({write(output){
+            }}).pipeThrough(new Function(`return ${transformStream}`)(port)).pipeTo(new WritableStream({write(output){
                 // the receiver destructures id, [stdout,stderr] } = output
                 port.postMessage(output);
             }}))
