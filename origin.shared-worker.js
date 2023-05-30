@@ -13,8 +13,10 @@ const readEverything =     new ReadableStream({ async start(progress){
 }});
 */
 sharedWorker.tasks = [];
-sharedWorker.onconnect = ({ports:[port]}) => port.onmessage = ({ data: { id, run }}) => {
-    if (id && run) {
+sharedWorker.onconnect = ({ports:[port]}) => {
+    port.id = crypto.randomUUID()
+    port.onmessage = ({ data: { run }}) => {
+    if (run) {
         try {
         sharedWorker.tasks[id] = { 
             readable: new Function(`return ${run}`)(port), 
@@ -25,10 +27,12 @@ sharedWorker.onconnect = ({ports:[port]}) => port.onmessage = ({ data: { id, run
         };
 
         sharedWorker.tasks[id].readable.pipeThough(new TransformStream({transform(watch,observer){
+            
             observer.enqueue(watch);
         }})).pipeTo(sharedWorker.tasks[id].writable);
         } catch(stderr) {
             port.postMessage({ id, output: { stderr }})
         }
+    }
     }
 }
