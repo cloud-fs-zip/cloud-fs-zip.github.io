@@ -4,9 +4,11 @@ const importUrl = new URL('origin.shared-worker.js',import.meta.url)
 globalThis.sharedWorkers[importUrl] = (launch) => {
     const processor = new SharedWorker(importUrl);
     processor.postMessage({ launch });
+    new WritableStream({ write(output){ 
+        processor.postMessage(input);
+    }})
     new ReadableStream({ start(output){ 
         processor.onmessage = (watch) => output.enqueue(watch);
-        processor.postMessage(input);
     }})
 };
 export default globalThis;
