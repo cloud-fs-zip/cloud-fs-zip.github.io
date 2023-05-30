@@ -2,7 +2,6 @@
 // Represents the Runtime State Context 
 // service worker for the current scope
 
-
 /*
 const readEverything =     new ReadableStream({ async start(progress){ 
     // the function is able to be a readable stream or iterator 
@@ -44,8 +43,11 @@ globalThis.onconnect = ({ports:[port]}) => {
 
 globalThis.sharedWorkers = globalThis.sharedWorkers || {};
 
-// takes transform,stdin 
-globalThis.sharedWorkers[import.meta.url] = (launch,readable) => {
+
+
+const launch = (launch,readable,writable=new WritableStream({write([stdout,stderr]){
+
+}})) => {
     const processor = new SharedWorker(importUrl);
     processor.postMessage({ launch });
     readable.pipeTo(new WritableStream({ write(input){ 
@@ -53,9 +55,10 @@ globalThis.sharedWorkers[import.meta.url] = (launch,readable) => {
     }}));
     return new ReadableStream({ start(output){ 
         processor.onmessage = (watch) => output.enqueue(watch);
-    }, close(){processor.close();}});
+    }, close(){processor.close();}})
+    .pipeTo(writable);
+    
 };
 
-const launch = () => serviceWorker.sharedWorkers[import.meta.url]().pipeTo(new WritableStream({write([stdout,stderr]){
-
-}}));
+// takes transform,stdin 
+globalThis.sharedWorkers[import.meta.url] = launch;
