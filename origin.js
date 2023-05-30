@@ -1,4 +1,5 @@
 globalThis.navigator && globalThis.navigator.serviceWorker && globalThis?.navigator?.serviceWorker?.register('origin.service-worker.js');
 globalThis.sharedWorkers = globalThis.sharedWorkers || {};
-globalThis.sharedWorkers['origin.shared-worker.js'] =  new SharedWorker('origin.shared-worker.js');
+const importUrl = new URL('origin.shared-worker.js',import.meta.url)
+globalThis.sharedWorkers[importUrl] =  new SharedWorker(importUrl);
 export default globalThis;
