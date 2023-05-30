@@ -29,7 +29,7 @@ const readEverything =     new ReadableStream({ async start(progress){
 
 kernel.onconnect = ({ports:[port]}) => {
     port.onmessage = ({ data }) => {    
-        if (launch) {
+        if (data.startsWith('new TransformStream(')) {
             new ReadableStream({ start(stdin) {
                 port.onmessage = (input) => stdin.enqueue(input);
             }}).pipeThrough(
