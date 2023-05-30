@@ -59,3 +59,7 @@ const launch = (launch,input,output=new WritableStream({write([stdout,stderr]){
 
 // takes transform,stdin ,output
 globalThis.sharedWorkers[import.meta.url] = launch;
+
+new ReadableStream({start(stdin){
+   globalThis.onmessage = msg => stdin.enqueue(msg);
+}});
