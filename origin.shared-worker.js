@@ -32,10 +32,14 @@ kernel.onconnect = ({ports:[port]}) => {
         if (launch) {
             new ReadableStream({ start(stdin) {
                 port.onmessage = (input) => stdin.enqueue(input);
-            }}).pipeThrough(new Function(`return ${launch}`)(port)).pipeTo(new WritableStream({write(output){
-                // the receiver destructures id, [stdout,stderr] } = output
-                port.postMessage(output);
-            }}))
+            }}).pipeThrough(
+                new Function(`return ${launch}`)(port)).pipeTo(
+                    new WritableStream({write(output){
+                    // the receiver destructures id, [stdout,stderr] } = output
+                    port.postMessage(output);
+                }}))
+        } else {
+            new Error('did you forget to postMessage("new TransformStream()")?')
         }
     }
 }
