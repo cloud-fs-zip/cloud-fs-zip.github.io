@@ -3,7 +3,7 @@
 // service worker for the current scope
 const sharedWorker = origin.sharedWorkers[import.meta.url];
 
-sharedWorker.onconnect = ({ports:[port]}) => port.onmessage = ({data: { id, run }}) => {
+sharedWorker.onconnect = ({ports:[port]}) => port.onmessage = ({ data: { id, run }}) => {
     if (id && run) {
         try {
         new ReadableStream({ async start(progress){ 
@@ -16,7 +16,7 @@ sharedWorker.onconnect = ({ports:[port]}) => port.onmessage = ({data: { id, run 
             port.postMessage(progress)
         }}));
         } catch(stderr) {
-            port.postMessage({ id, stderr })
+            port.postMessage({ id, output: { stderr }})
         }
     }
 }
