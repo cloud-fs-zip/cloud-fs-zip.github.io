@@ -24,7 +24,7 @@ const readEverything =     new ReadableStream({ async start(progress){
 */
 
 sharedWorker.onconnect = ({ports:[port]}) => {
-    port.id = crypto.randomUUID();
+    const id = crypto.randomUUID();
     port.onmessage = ({ data: { run, ...input }}) => {    
         if (run) {
             new ReadableStream({ start(stdin) {
