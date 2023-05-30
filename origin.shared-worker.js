@@ -25,20 +25,21 @@ const readEverything =     new ReadableStream({ async start(progress){
 
 sharedWorker.onconnect = ({ports:[port]}) => {
     port.id = crypto.randomUUID();
-    const launch = { 
-        readable: new ReadableStream({ start(stdin) {
-            port.onmessage = (input) => stdin.enqueue(input);
-        }}), 
-        transform: new Function(`return ${run}`)(port),
-        writable: new WritableStream({write(output){
-            // the receiver destructures id, { stderr, stdout } = output
-            port.postMessage({ id, output });
-        }}),
+    const launch = (run)=>{ 
+        readable: , 
+        transform: ,
+        writable: ,
     };
 
     port.onmessage = ({ data: { run, ...data }}) => {
+        
         if (run) {
-            
+            new ReadableStream({ start(stdin) {
+                port.onmessage = (input) => stdin.enqueue(input);
+            }}).pipeThrough(new Function(`return ${run}`)(port)).pipeTo(new WritableStream({write(output){
+                // the receiver destructures id, { stderr, stdout } = output
+                port.postMessage({ id, output });
+            }}))
         }
     
     }
