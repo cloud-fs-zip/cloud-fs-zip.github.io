@@ -47,7 +47,7 @@ const launch = (launch,input,output=new WritableStream({write([stdout,stderr]){
 
 }})) => {
     const processor = new SharedWorker(importUrl);
-    processor.postMessage({ launch });
+    processor.postMessage(launch);
     readable.pipeTo(new WritableStream({ write(input){ 
         processor.postMessage(input);
     }}));
@@ -60,6 +60,6 @@ const launch = (launch,input,output=new WritableStream({write([stdout,stderr]){
 // takes transform,stdin ,output
 globalThis.sharedWorkers[import.meta.url] = launch;
 
-new ReadableStream({start(stdin){
+launch(,new ReadableStream({start(stdin){
    globalThis.onmessage = msg => stdin.enqueue(msg);
-}});
+}}));
