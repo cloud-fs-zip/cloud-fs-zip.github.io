@@ -35,7 +35,8 @@ kernel.onconnect = ({ports:[port]}) => {
                     port.postMessage(output);
                 }}))
         } else {
-            const exampleFunction = () => new TransformStream();
+            
+            const exampleFunction = async () => await new TransformStream();
             new Error(`did you forget to postMessage(${exampleFunction})?`)
         }
     }
