@@ -1,2 +1,2 @@
 // service worker for the current scope
-import './origin.js';
+import serviceWorker from './origin.js';
