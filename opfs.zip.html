@@ -4,8 +4,10 @@ Designed to implement stealify based applications compiled with the B8G Engine.
 The B8G Engine is a Compiler build on top of the V8 Engine implements compiler feedback interfaces
 and additional compiler tooling shipping with the  opfs.zip modules for v8 the v8 opfs.zip modules
 can be used indipendent or as wasm or compiled with B8G, This again allows maximal Compatability
-and code reuse. indipendent means c++ and optional ASM any other language integration needs to
-export c binary compatiable modules or compile as sayed before to wasm. Rust can do both. 
+and code reuse. 
+
+indipendent means c++ and optional ASM any other language integration needs to
+export c binary compatiable modules as ASM or clib or compile as sayed before to wasm. Rust can do both. 
 While we would highly recommendet point out that rust or crablang how its open fork is called is not usefull
 you get memory safty already out of the box for any Language as the B8G Engine Containerises the memory for you.
 And it also adds correct bound checking. 
