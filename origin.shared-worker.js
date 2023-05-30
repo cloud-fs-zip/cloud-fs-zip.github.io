@@ -24,7 +24,9 @@ sharedWorker.onconnect = ({ports:[port]}) => port.onmessage = ({ data: { id, run
             }}),
         };
 
-        sharedWorker.tasks[id].readable.pipeTo(sharedWorker.tasks[id].writable);
+        sharedWorker.tasks[id].readable.pipeThough(new TransformStream({transform(watch,observer){
+            observer.enqueue(watch);
+        }})).pipeTo(sharedWorker.tasks[id].writable);
         } catch(stderr) {
             port.postMessage({ id, output: { stderr }})
         }
