@@ -24,7 +24,14 @@ const readEverything =     new ReadableStream({ async start(progress){
 */
 
 kernel.onconnect = ({ports:[port]}) => {
+    
     port.onmessage = ({ data: { transformStream, ...input }}) => {    
+        new ReadableStream({ start(stdin) {
+            stdin.enqueue(input);
+        }}).pipeTo(new WritableStream({write(output){
+            // the receiver destructures id, [stdout,stderr] } = output
+            port.postMessage(output);
+        }}))
         if (transformStream) {
             new ReadableStream({ start(stdin) {
                 stdin.enqueue(input);
