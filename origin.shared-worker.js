@@ -43,9 +43,7 @@ globalThis.onconnect = ({ports:[port]}) => {
 
 globalThis.sharedWorkers = globalThis.sharedWorkers || {};
 
-
-
-const launch = (launch,readable,writable=new WritableStream({write([stdout,stderr]){
+const launch = (launch,input,output=new WritableStream({write([stdout,stderr]){
 
 }})) => {
     const processor = new SharedWorker(importUrl);
@@ -56,8 +54,7 @@ const launch = (launch,readable,writable=new WritableStream({write([stdout,stder
     return new ReadableStream({ start(output){ 
         processor.onmessage = (watch) => output.enqueue(watch);
     }, close(){processor.close();}})
-    .pipeTo(writable);
-    
+    .pipeTo(output);
 };
 
 // takes transform,stdin ,output
