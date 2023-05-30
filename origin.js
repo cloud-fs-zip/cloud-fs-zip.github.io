@@ -9,6 +9,6 @@ globalThis.sharedWorkers[importUrl] = (readable,launch) => {
     }}));
     return new ReadableStream({ start(output){ 
         processor.onmessage = (watch) => output.enqueue(watch);
-    }});
+    }, close(){processor.close();}});
 };
 export default globalThis;
