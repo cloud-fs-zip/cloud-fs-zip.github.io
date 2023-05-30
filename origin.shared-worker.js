@@ -1,7 +1,7 @@
 // Serializes messages cross context via BroadcastChannel output merge to readableStream
 // Represents the Runtime State Context 
 // service worker for the current scope
-const sharedWorker = origin.sharedWorkers[import.meta.url];
+const kernel = origin.sharedWorkers[import.meta.url];
 
 /*
 const readEverything =     new ReadableStream({ async start(progress){ 
@@ -23,9 +23,9 @@ const readEverything =     new ReadableStream({ async start(progress){
                 }
 */
 
-sharedWorker.onconnect = ({ports:[port]}) => {
+kernel.onconnect = ({ports:[port]}) => {
     port.onmessage = ({ data: { transformStream, ...input }}) => {    
-        if (run) {
+        if (transformStream) {
             new ReadableStream({ start(stdin) {
                 stdin.enqueue(input);
             }}).pipeThrough(new Function(`return ${transformStream}`)(port)).pipeTo(new WritableStream({write(output){
