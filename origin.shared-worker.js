@@ -13,6 +13,7 @@ sharedWorker.onconnect = ({ports:[port]}) => port.onmessage = ({ data: { id, run
                 progress.enqueue({ id, output })
             }
         }}).pipeTo(new WritableStream({write(progress){
+            // the receiver destructures id, { stderr, stdout } = output
             port.postMessage(progress)
         }}));
         } catch(stderr) {
