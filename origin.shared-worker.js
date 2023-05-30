@@ -8,9 +8,11 @@ const sharedWorker = origin.sharedWorkers[import.meta.url];
 sharedWorker.onconnect = ({ports:[port]}) => port.onmessage = ({data: {id, run }}) => {
     if (id && run) {
         new ReadableStream({ async start(progress){ 
+        
             for await (const value of await (new Function(`return ${run}`))(port)) {
-                progress.enqueue(value);
+                progress.enqueue(value)
             }
+        
         }}).pipeTo(new WritableStream({write(progress){
             port.postMessage(progress)
         }}))
