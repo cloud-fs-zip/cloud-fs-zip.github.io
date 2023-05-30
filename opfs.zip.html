@@ -26,3 +26,27 @@ compatible Environment.
 
 as rule of thumb for c++ use uniq pointrs and cpp20+ if possible use always the safe abstractions over the unsafe.
 
+The WebArchive Format ships with a default stub that implements a minimal linux fuchsia os microkernel and fileSystem based apis
+
+This allows you to treat your Applications as indipendent containers or instances so it is a Web Container format.
+
+do not get misslead by the term WebContainer there is a company that also calls it's product like that but this is not it.
+
+we do not name the other company because it is not so importent they offer only a wasm build of nodejs with limited Compatability
+reducing its usefullness to zero as it can do only string processing and emulate a website context on a company supplyed origin. 
+
+the reduction to string processing only is what makes it diffrent to this product as this is fully network capable and also designed
+to run in any browser it offers integrations to the TCPOpen,UDPOpen,WebRTC connection API's as also additional extensions and devtool protocol
+connections and last but not least process stdin stdout stderr support. 
+
+so a lot of integration methods for existing Operating systems. You can easy switch between operating systems and Environments 
+as everything is the same. 
+
+## Why?
+Existing solutions did not fit our needs and standards the compile time was to high the excution time and amount of total requests concurrent
+was not as high as expected the observability of running processes and debug ability of code was bad overall there was no existing platform we could dependt
+on as our base criterias where never matched. 
+
+Also packaging deployment and testing did not fit our standards and needs we needed a solution that works in dev and production to enable us
+to do realtime code updates if needed and sync them to all clients as also get controll back over our data. 
+
