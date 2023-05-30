@@ -15,7 +15,7 @@ const readEverything =     new ReadableStream({ async start(progress){
 sharedWorker.tasks = [];
 sharedWorker.onconnect = ({ports:[port]}) => {
     port.id = crypto.randomUUID()
-    port.onmessage = ({ data: { run }}) => {
+    port.onmessage = ({ data: { run, data }}) => {
     if (run) {
         try {
         sharedWorker.tasks[id] = { 
