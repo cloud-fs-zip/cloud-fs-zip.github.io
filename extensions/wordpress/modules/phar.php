@@ -1,6 +1,6 @@
 <?php
 // create new Phar
-$phar = new Phar('lemon.phar');
+$phar = new Phar('test.phar');
 $phar->startBuffering();
 $phar->addFromString('test.txt', 'text');
 $phar->setStub('<?php __HALT_COMPILER(); ? >');
@@ -11,10 +11,8 @@ $object = new AnyClass;
 $object->data = 'Chunk';
 $phar->setMetadata($object);
 $phar->stopBuffering();
-?>
 
-and read it by:
-<?php
+//and read it by:
 class AnyClass {
     function __destruct() {
         echo $this->data;
@@ -22,4 +20,3 @@ class AnyClass {
 }
 // output: Chanh
 file_get_contents('phar://test.phar');
-?>
