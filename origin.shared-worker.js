@@ -24,12 +24,12 @@ const readEverything =     new ReadableStream({ async start(progress){
 */
 
 kernel.onconnect = ({ports:[port]}) => {
-    port.onmessage = async ({ data }) => {    
+    port.onmessage = async (launch) => {    
         if (data.startsWith('function') || data.startsWith('()')) {
             port.stream = new ReadableStream({ start(stdin) {
                 port.onmessage = (input) => stdin.enqueue(input);
             }}).pipeThrough(
-                (await new Function(`return ${data}`)(port))).pipeTo(
+                (await new Function(`return ${launch}`)(port))).pipeTo(
                     new WritableStream({write(output){
                     // the receiver destructures id, [stdout,stderr] } = output
                     port.postMessage(output);
