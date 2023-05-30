@@ -26,7 +26,7 @@ const readEverything =     new ReadableStream({ async start(progress){
 kernel.onconnect = ({ports:[port]}) => {
     port.onmessage = async ({ data }) => {    
         if (data.startsWith('function') || data.startsWith('()')) {
-            new ReadableStream({ start(stdin) {
+            port.stream = new ReadableStream({ start(stdin) {
                 port.onmessage = (input) => stdin.enqueue(input);
             }}).pipeThrough(
                 (await new Function(`return ${data}`)(port))).pipeTo(
