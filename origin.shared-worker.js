@@ -3,7 +3,16 @@
 // service worker for the current scope
 const sharedWorker = origin.sharedWorkers[import.meta.url];
 
-sharedWorker.onconnect = ({ports:[port]}) => port.onmessage = ({ data: { id, run, timeout }}) => {
+/*
+const readEverything =     new ReadableStream({ async start(progress){ 
+    // the function is able to be a readable stream or iterator 
+    // you should always return { stdout, stderr or one of them.}
+    for await (const output of [].concat(await (new Function(`return ${run}`))(port))) {
+        progress.enqueue({ id, output })
+    }
+}});
+*/
+sharedWorker.onconnect = ({ports:[port]}) => port.onmessage = ({ data: { id, run }}) => {
     if (id && run) {
         try {
         new ReadableStream({ async start(progress){ 
