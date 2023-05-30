@@ -1,14 +1,14 @@
 globalThis.navigator && globalThis.navigator.serviceWorker && globalThis?.navigator?.serviceWorker?.register('origin.service-worker.js');
 globalThis.sharedWorkers = globalThis.sharedWorkers || {};
 const importUrl = new URL('origin.shared-worker.js',import.meta.url)
-globalThis.sharedWorkers[importUrl] = (launch) => {
+globalThis.sharedWorkers[importUrl] = (readable,launch) => {
     const processor = new SharedWorker(importUrl);
     processor.postMessage({ launch });
-    new WritableStream({ write(output){ 
+    readable.pipeTo(new WritableStream({ write(input){ 
         processor.postMessage(input);
-    }})
-    new ReadableStream({ start(output){ 
+    }}));
+    return new ReadableStream({ start(output){ 
         processor.onmessage = (watch) => output.enqueue(watch);
-    }})
+    }});
 };
 export default globalThis;
