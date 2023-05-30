@@ -39,7 +39,7 @@ kernel.onconnect = ({ports:[port]}) => {
                     port.postMessage(output);
                 }}))
         } else {
-            // You can pass regular functions postMessage(fnName): TransformStream
+            // You can pass regular functions postMessage(fnName: function<TransformStream>)
             new Error('did you forget to postMessage("()=>new TransformStream()")?')
         }
     }
