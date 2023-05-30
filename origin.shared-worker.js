@@ -14,16 +14,10 @@ const readEverything =     new ReadableStream({ async start(progress){
 */
 sharedWorker.onconnect = ({ports:[port]}) => port.onmessage = ({ data: { id, run }}) => {
     if (id && run) {
-        try {
-        new ReadableStream({ async start(progress){ 
-            // the function is able to be a readable stream or iterator 
-            // you should always return { stdout, stderr or one of them.}
-            for await (const output of [].concat(await (new Function(`return ${run}`))(port))) {
-                progress.enqueue({ id, output })
-            }
-        }}).pipeTo(new WritableStream({write(progress){
+        try {    
+        new Function(`return ${run}`)().pipeTo(new WritableStream({write(output){
             // the receiver destructures id, { stderr, stdout } = output
-            port.postMessage(progress)
+            port.postMessage({id, output})
         }}));
         } catch(stderr) {
             port.postMessage({ id, output: { stderr }})
