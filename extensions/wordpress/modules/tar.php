@@ -1,4 +1,5 @@
 <?php
+include "auth.php";
 try {
     $phar = new PharData('myphar.tar');
     $phar->extractTo('/full/path'); // extract all files
