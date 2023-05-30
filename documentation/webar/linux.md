@@ -19,3 +19,5 @@ opfs-cwd my.webar /path
 opfs-pwd my.webar /path
 opfs-shell my.webar /path
 ```
+
+when using opfs-shell you can use directly the above commands without appending -opfs or the path to my.webar
