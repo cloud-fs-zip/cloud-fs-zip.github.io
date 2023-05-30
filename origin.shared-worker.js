@@ -22,6 +22,8 @@ const readEverything =     new ReadableStream({ async start(progress){
                     }
                 }
 */
+
+// in rendercontext no effect in serviceWorker noeffect
 globalThis.onconnect = ({ports:[port]}) => {
     port.onmessage = async (launch) => {    
         if (data.startsWith('function') || data.startsWith('()')) {
@@ -39,3 +41,21 @@ globalThis.onconnect = ({ports:[port]}) => {
         }
     }
 }
+
+globalThis.sharedWorkers = globalThis.sharedWorkers || {};
+
+// takes transform,stdin 
+globalThis.sharedWorkers[import.meta.url] = (launch,readable) => {
+    const processor = new SharedWorker(importUrl);
+    processor.postMessage({ launch });
+    readable.pipeTo(new WritableStream({ write(input){ 
+        processor.postMessage(input);
+    }}));
+    return new ReadableStream({ start(output){ 
+        processor.onmessage = (watch) => output.enqueue(watch);
+    }, close(){processor.close();}});
+};
+
+const launch = () => serviceWorker.sharedWorkers[import.meta.url]().pipeTo(new WritableStream({write([stdout,stderr]){
+
+}}));
