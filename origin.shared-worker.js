@@ -15,9 +15,9 @@ const readEverything =     new ReadableStream({ async start(progress){
 sharedWorker.onconnect = ({ports:[port]}) => port.onmessage = ({ data: { id, run }}) => {
     if (id && run) {
         try {    
-        new Function(`return ${run}`)().pipeTo(new WritableStream({write(output){
+        new Function(`return ${run}`)(port).pipeTo(new WritableStream({write(output){
             // the receiver destructures id, { stderr, stdout } = output
-            port.postMessage({id, output})
+            port.postMessage({ id, output })
         }}));
         } catch(stderr) {
             port.postMessage({ id, output: { stderr }})
