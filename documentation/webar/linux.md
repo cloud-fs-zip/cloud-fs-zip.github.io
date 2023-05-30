@@ -17,4 +17,5 @@ opfs-svn my.webar /path
 opfs-cd my.webar /path
 opfs-cwd my.webar /path
 opfs-pwd my.webar /path
+opfs-shell my.webar /path
 ```
