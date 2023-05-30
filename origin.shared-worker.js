@@ -29,13 +29,12 @@ kernel.onconnect = ({ports:[port]}) => {
             port.stream = new ReadableStream({ start(stdin) {
                 port.onmessage = (input) => stdin.enqueue(input);
             }}).pipeThrough(
-                (await new Function(`return ${launch}`)(port))).pipeTo(
+                (await new Function(`return ${launch}`)())).pipeTo(
                     new WritableStream({write(output){
                     // the receiver destructures id, [stdout,stderr] } = output
                     port.postMessage(output);
                 }}))
         } else {
-            
             const exampleFunction = async () => await new TransformStream();
             new Error(`did you forget to postMessage(${exampleFunction})?`)
         }
