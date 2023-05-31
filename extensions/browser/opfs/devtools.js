@@ -1,4 +1,4 @@
-const browser = globalThis.browser || chrome;
+import { browser } from "./browser.js";
 
 const applyEl = (el,{style, dataset,...props}={}) => Object.assign(el,props)
     && Object.assign(el.style, style) && Object.assign(el.dataset, dataset) && el;
