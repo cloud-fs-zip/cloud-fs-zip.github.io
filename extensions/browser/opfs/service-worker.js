@@ -6,10 +6,10 @@ browser.runtime.onConnect.addListener((devToolsConnection) => {
 
     devToolsConnection.onMessage.addListener(devToolsListener);
     devToolsConnection.onDisconnect.addListener(() =>
-    devToolsConnection.onMessage.removeListener(devToolsListener),
+    devToolsConnection.onMessage.removeListener(devToolsListener)
     );
 
     browser.tabs.onUpdated.addListener(() =>
-    devToolsConnection.postMessage({ name: 'navigation' }),
+    devToolsConnection.postMessage({ name: 'navigation' })
     );
 });
