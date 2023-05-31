@@ -25,7 +25,7 @@
 	"additionalBuiltinExtensions": [
 	  {
 		"scheme": "http",
-		"path": "/extensions/explorer"
+		"path": "/extensions/workbench"
 	  }
 	]
   }
