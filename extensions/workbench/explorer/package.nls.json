@@ -1,4 +1,4 @@
-{"displayName":"cloud-fs","description":"Provides AwesomeOS Workspaces",
+{"displayName":"explorer","description":"Provides AwesomeOS Workspaces",
 "activationEvents": ["onFileSystem:memfs", "onDebug"],
     "enabledApiProposals": ["fileSearchProvider", "textSearchProvider"],
     "contributes": {
