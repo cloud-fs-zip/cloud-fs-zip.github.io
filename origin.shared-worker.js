@@ -65,4 +65,5 @@ globalThis.window && launch('()=>new TransformStream()',new ReadableStream({star
 const port = { 
     postMessage(msg){globalThis.postMessage(msg)}
 }; 
-PortStreams()
+PortStreams(port);
+globalThis.onmessage = (msg) => port.onmessage(msg);
