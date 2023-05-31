@@ -29,7 +29,8 @@
 		self.webPackagePaths = Object.entries(self.webPackagePaths).map(([key, value]) => 
 				[key,`${new URL(`/node_modules/vscode-web/dist/node_modules/${key}/${value}`,window.location)}`]
 			)
-		require.config({
+		console.log(self.webPackagePaths)
+			require.config({
 			baseUrl: `${new URL('/node_modules/vscode-web/dist/out/',window.location)}`,
 			recordStats: true,
 			trustedTypesPolicy: window.trustedTypes?.createPolicy('amdLoader', {
@@ -41,6 +42,7 @@
 				[key,`${new URL(`/node_modules/vscode-web/dist/node_modules/${key}/${value}`,window.location)}`]
 			),
 		});
+
 	</script>
 	<script src="/node_modules/vscode-web/dist/out/vs/workbench/workbench.web.main.nls.js"></script>
 	<script src="/node_modules/vscode-web/dist/out/vs/workbench/workbench.web.main.js"></script>
