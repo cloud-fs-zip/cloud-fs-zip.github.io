@@ -1,9 +1,9 @@
 {
 	"productConfiguration": {
-	  "nameShort": "Awesome Os cloud-fs",
-	  "nameLong": "Awesome Os cloud-fs",
-	  "applicationName": "cloud-fs",
-	  "dataFolderName": ".cloud-fs",
+	  "nameShort": "opfs.zip",
+	  "nameLong": "opfs.zip",
+	  "applicationName": "opfs.zip",
+	  "dataFolderName": ".opfs.zip",
 	  "version": "1.75.0",
 	  "extensionsGallery": {
 		"serviceUrl": "https://open-vsx.org/vscode/gallery",
