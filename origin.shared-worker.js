@@ -21,6 +21,14 @@ const readEverything =     new ReadableStream({ async start(progress){
                     }
                 }
 */
+const PortStreams = (port) => [
+    new ReadableStream({start(output){ 
+        port.onmessage = (watch) => output.enqueue(watch);
+    }, close(){port.close();}}),
+    new WritableStream({write(output){ port.postMessage(output); }})
+];
+const WritablePort = (port) => 
+const ReadablePort = (port) => ;
 
 globalThis.onconnect = ({ports:[port]}) => {
     port.onmessage = async (launch) => {    
@@ -42,15 +50,10 @@ globalThis.onconnect = ({ports:[port]}) => {
 
 // takes transform,stdin ,output
 export const launch = (launch,stdin,output) => {
-    const processor = new SharedWorker(import.meta.url);
-    processor.postMessage(launch);
-    stdin.pipeTo(new WritableStream(
-        { write(input){ processor.postMessage(input); }}
-    ));
-    return new ReadableStream({start(output){ 
-        processor.onmessage = (watch) => output.enqueue(watch);
-    }, close(){processor.close();}})
-    .pipeTo(output);
+    const port = new SharedWorker(import.meta.url);
+    port.postMessage(launch);
+    stdin.pipeTo(WritablePort(port));
+    return ReadablePort(port).pipeTo(output);
 };
 
 globalThis.window && launch('()=>new TransformStream()',new ReadableStream({start(stdin){
