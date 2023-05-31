@@ -52,8 +52,9 @@ globalThis.onconnect = ({ports:[port]}) => {
 export const launch = (launch,stdin,output) => {
     const port = new SharedWorker(import.meta.url);
     port.postMessage(launch);
-    stdin.pipeTo(WritablePort(port));
-    return ReadablePort(port).pipeTo(output);
+    const [ReadablePort,WritablePort] = PortStreams(port);
+    stdin.pipeTo(WritablePort);
+    return ReadablePort.pipeTo(output);
 };
 
 globalThis.window && launch('()=>new TransformStream()',new ReadableStream({start(stdin){
