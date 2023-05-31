@@ -47,7 +47,7 @@ const launch = (launch,stdin,output) => {
     const processor = new SharedWorker(importUrl);
     processor.postMessage(launch);
     stdin.pipeTo(new WritableStream({ write(input){ processor.postMessage(input); }}));
-    return new ReadableStream({ start(output){ 
+    return new ReadableStream({start(output){ 
         processor.onmessage = (watch) => output.enqueue(watch);
     }, close(){processor.close();}})
     .pipeTo(output);
