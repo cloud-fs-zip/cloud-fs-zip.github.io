@@ -28,7 +28,7 @@
 	<script>
 		
 		require.config({
-			baseUrl: `${window.location.origin}/node_modules/vscode-web/dist/out`,
+			baseUrl: `${new URL('./node_modules/vscode-web/dist/out/',window.location)}`,
 			recordStats: true,
 			trustedTypesPolicy: window.trustedTypes?.createPolicy('amdLoader', {
 				createScriptURL(value) {
@@ -36,7 +36,7 @@
 				}
 			}),
 			paths: Object.entries(self.webPackagePaths).map(([key, value]) => 
-				[key,`${window.location.origin}/node_modules/vscode-web/dist/node_modules/${key}/${value}`]
+				[key,`${new URL(`./node_modules/vscode-web/dist/node_modules/${key}/${value}`,window.location)}`]
 			),
 		});
 	</script>
