@@ -41,7 +41,7 @@ globalThis.onconnect = ({ports:[port]}) => {
     }
 }
 
-globalThis.sharedWorkers = globalThis.sharedWorkers || {};
+
 
 const launch = (launch,stdin,output) => {
     const processor = new SharedWorker(importUrl);
@@ -54,6 +54,7 @@ const launch = (launch,stdin,output) => {
 };
 
 // takes transform,stdin ,output
+globalThis.sharedWorkers = globalThis.sharedWorkers || {};
 globalThis.sharedWorkers[import.meta.url] = launch;
 
 globalThis.window && launch('()=>new TransformStream()',new ReadableStream({start(stdin){
