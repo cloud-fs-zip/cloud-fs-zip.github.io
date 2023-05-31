@@ -33,14 +33,13 @@ const PortStreams = (port) => [
 globalThis.onconnect = ({ports:[port]}) => {
     port.onmessage = async (launch) => {    
         if (data.startsWith('function') || data.startsWith('()')) {
-            port.stream = new ReadableStream(
-                { start(stdin) { port.onmessage = (input) => stdin.enqueue(input); }}
-            ).pipeThrough(
+            const [ReadablePort,WritablePort] = PortStreams(port);
+            port.stream = ReadablePort.pipeThrough(
                 (await new Function(`return ${launch}`)())
             ).pipeTo(
                 // the receiver destructures [stdout,stderr] } = output
-                new WritableStream({write(output){ port.postMessage(output); }})
-            )
+                WritablePort
+            );
         } else {
             const exampleFunction = async () => await new TransformStream();
             new Error(`did you forget to postMessage(${exampleFunction})?`)
