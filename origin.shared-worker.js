@@ -24,8 +24,11 @@ const readEverything =     new ReadableStream({ async start(progress){
 const PortStreams = (port) => [
     new ReadableStream({start(output){ 
         port.onmessage = (watch) => output.enqueue(watch);
-    }, close(){port.close();}}),
-    new WritableStream({write(output){ port.postMessage(output); }})
+    }}),
+    new WritableStream({
+        write(output){ port.postMessage(output); },
+        close(){ port.close(); },
+    })
 ];
 //const [ReadablePort,WritablePort] = PortStreams(port) 
 
@@ -62,8 +65,8 @@ globalThis.window && launch('()=>new TransformStream()',new ReadableStream({star
 
 }}));
 
-const port = { 
-    postMessage(msg){globalThis.postMessage(msg)}
-}; 
-PortStreams(port);
-globalThis.onmessage = (msg) => port.onmessage(msg);
+// const port = { 
+//     postMessage(msg){globalThis.postMessage(msg)}
+// }; 
+// PortStreams(port);
+// globalThis.onmessage = (msg) => port.onmessage(msg);
