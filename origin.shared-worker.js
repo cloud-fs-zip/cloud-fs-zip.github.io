@@ -27,8 +27,8 @@ const PortStreams = (port) => [
     }, close(){port.close();}}),
     new WritableStream({write(output){ port.postMessage(output); }})
 ];
-const WritablePort = (port) => 
-const ReadablePort = (port) => ;
+//const [ReadablePort,WritablePort] = PortStreams(port) 
+
 
 globalThis.onconnect = ({ports:[port]}) => {
     port.onmessage = async (launch) => {    
