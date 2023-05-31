@@ -1,8 +1,6 @@
 //import('./module.js')
 // npm install --prefix $PWD -g vscode-web
-Object.keys(self.webPackagePaths).map(function (key, index) {
-	self.webPackagePaths[key] = `${window.location.origin}/lib/node_modules/vscode-web/dist/node_modules/${key}/${self.webPackagePaths[key]}`;
-});
+;
 require.config({
 	baseUrl: `${window.location.origin}/lib/node_modules/vscode-web/dist`,
 	recordStats: true,
@@ -11,7 +9,9 @@ require.config({
 			return value;
 		}
 	}),
-	paths: self.webPackagePaths
+	paths: Object.entries(self.webPackagePaths).map(([key,value]) => 
+		self.webPackagePaths[key] = `${window.location.origin}/lib/node_modules/vscode-web/dist/node_modules/${key}/${value}`
+	)
 });
 /* 
 // localStorage.getItem('monaco-parts-splash') || localStorage.setItem('monaco-parts-splash',{"baseTheme":"vs-dark","colorInfo":{"foreground":"#cccccc","background":"#1e1e1e","editorBackground":"#1e1e1e","titleBarBackground":"#3c3c3c","activityBarBackground":"#333333","sideBarBackground":"#252526","statusBarBackground":"#007acc","statusBarNoFolderBackground":"#68217a"},"layoutInfo":{"sideBarSide":"left","editorPartMinWidth":220,"titleBarHeight":0,"activityBarWidth":48,"sideBarWidth":300,"statusBarHeight":22,"windowBorder":false}})
