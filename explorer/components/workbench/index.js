@@ -1,7 +1,7 @@
 //import('./module.js')
 // npm install --prefix $PWD -g vscode-web
-Object.keys(self.webPackagePaths).map(function (key, index) {
-	self.webPackagePaths[key] = `${new URL('.',import.meta.url)}/lib/node_modules/vscode-web/dist/node_modules/${key}/${self.webPackagePaths[key]}`;
+Object.entries(self.webPackagePaths).map(function ([key, value]) {
+	return [key,`${new URL('.',import.meta.url)}/lib/node_modules/vscode-web/dist/node_modules/${key}/${self.webPackagePaths[key]}`];
 });
 require.config({
 	baseUrl: `${new URL('.',import.meta.url)}/lib/node_modules/vscode-web/dist/out`,
