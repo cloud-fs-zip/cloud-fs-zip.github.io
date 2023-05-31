@@ -44,7 +44,9 @@ globalThis.onconnect = ({ports:[port]}) => {
 export const launch = (launch,stdin,output) => {
     const processor = new SharedWorker(import.meta.url);
     processor.postMessage(launch);
-    stdin.pipeTo(new WritableStream({ write(input){ processor.postMessage(input); }}));
+    stdin.pipeTo(new WritableStream(
+        { write(input){ processor.postMessage(input); }}
+    ));
     return new ReadableStream({start(output){ 
         processor.onmessage = (watch) => output.enqueue(watch);
     }, close(){processor.close();}})
