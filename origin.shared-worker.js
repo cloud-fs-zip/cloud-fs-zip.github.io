@@ -56,7 +56,7 @@ const launch = (launch,stdin,output) => {
 // takes transform,stdin ,output
 globalThis.sharedWorkers[import.meta.url] = launch;
 
-launch('()=>new TransformStream()',new ReadableStream({start(stdin){
+globalThis.window && launch('()=>new TransformStream()',new ReadableStream({start(stdin){
    globalThis.onmessage = msg => stdin.enqueue(msg);
 }}),new WritableStream({write([stdout,stderr]){
 
