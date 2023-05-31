@@ -1,8 +1,8 @@
 //import('./module.js')
-// npm install --prefix $PWD -g vscode-web
+// mkdir node_modules && npm install --prefix $PWD --no-save vscode-web
 
 require.config({
-	baseUrl: `${new URL('.',document.location)}lib/node_modules/vscode-web/dist/out/node_modules`,
+	baseUrl: `${new URL('.',document.location)}node_modules/vscode-web/dist/out/node_modules`,
 	recordStats: true,
 	trustedTypesPolicy: window.trustedTypes?.createPolicy('amdLoader', {
 		createScriptURL(value) {
@@ -10,7 +10,7 @@ require.config({
 		}
 	}),
 	paths: Object.entries(self.webPackagePaths).map(function ([key, value]) {
-		return [key,`${new URL('.',document.location)}lib/node_modules/vscode-web/dist/node_modules/${key}/${value}`];
+		return [key,`${new URL('.',document.location)}node_modules/vscode-web/dist/node_modules/${key}/${value}`];
 	}),
 });
 /* 
