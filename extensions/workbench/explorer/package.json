@@ -2,7 +2,7 @@
     "name": "explorer",
     "description": "Cloud FS Support for code-oss compatible environments",
     "version": "0.0.14",
-    "publisher": "awesome-os",
+    "publisher": "opfs.zip",
     "license": "Unlicense",
     "private": true,
     "browser": "./extension.js",
