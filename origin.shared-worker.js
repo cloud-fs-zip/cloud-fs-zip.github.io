@@ -41,8 +41,9 @@ globalThis.onconnect = ({ports:[port]}) => {
     }
 };
 
+// takes transform,stdin ,output
 export const launch = (launch,stdin,output) => {
-    const processor = new SharedWorker(importUrl);
+    const processor = new SharedWorker(import.meta.url);
     processor.postMessage(launch);
     stdin.pipeTo(new WritableStream({ write(input){ processor.postMessage(input); }}));
     return new ReadableStream({start(output){ 
@@ -50,10 +51,6 @@ export const launch = (launch,stdin,output) => {
     }, close(){processor.close();}})
     .pipeTo(output);
 };
-
-// takes transform,stdin ,output
-globalThis.sharedWorkers = globalThis.sharedWorkers || {};
-globalThis.sharedWorkers[import.meta.url] = launch;
 
 globalThis.window && launch('()=>new TransformStream()',new ReadableStream({start(stdin){
    globalThis.onmessage = msg => stdin.enqueue(msg);
