@@ -22,7 +22,6 @@ const readEverything =     new ReadableStream({ async start(progress){
                 }
 */
 
-// in rendercontext no effect in serviceWorker noeffect
 globalThis.onconnect = ({ports:[port]}) => {
     port.onmessage = async (launch) => {    
         if (data.startsWith('function') || data.startsWith('()')) {
