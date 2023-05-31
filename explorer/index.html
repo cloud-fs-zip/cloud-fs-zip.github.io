@@ -26,9 +26,8 @@
 	<script src="/node_modules/vscode-web/dist/out/vs/loader.js"></script>
 	<script src="/node_modules/vscode-web/dist/out/vs/webPackagePaths.js"></script>
 	<script>
-		self.webPackagePaths = Object.entries(self.webPackagePaths).map(([key, value]) => 
-				[key,`${new URL(`/node_modules/vscode-web/dist/node_modules/${key}/${value}`,window.location)}`]
-			)
+		Object.entries(self.webPackagePaths).map(([key, value]) => 
+		self.webPackagePaths[key] = `${new URL(`/node_modules/vscode-web/dist/node_modules/${key}/${value}`,window.location)}`)
 		console.log(self.webPackagePaths)
 			require.config({
 			baseUrl: `${new URL('/node_modules/vscode-web/dist/out/',window.location)}`,
@@ -38,9 +37,7 @@
 					return value;
 				}
 			}),
-			paths: Object.entries(self.webPackagePaths).map(([key, value]) => 
-				[key,`${new URL(`/node_modules/vscode-web/dist/node_modules/${key}/${value}`,window.location)}`]
-			),
+			paths: self.webPackagePaths,
 		});
 
 	</script>
