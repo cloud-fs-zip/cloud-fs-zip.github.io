@@ -34,7 +34,7 @@ globalThis.onconnect = ({ports:[port]}) => {
     port.onmessage = async (launch) => {    
         if (data.startsWith('function') || data.startsWith('()')) {
             const [ReadablePort,WritablePort] = PortStreams(port);
-            ReadablePort.pipeThrough(
+            port.stream = ReadablePort.pipeThrough(
                 (await new Function(`return ${launch}`)())
             ).pipeTo(
                 // the receiver destructures [stdout,stderr] } = output
