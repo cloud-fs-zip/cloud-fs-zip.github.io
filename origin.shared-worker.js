@@ -61,3 +61,8 @@ globalThis.window && launch('()=>new TransformStream()',new ReadableStream({star
 }}),new WritableStream({write([stdout,stderr]){
 
 }}));
+
+const port = { 
+    postMessage(msg){globalThis.postMessage(msg)}
+}; 
+PortStreams()
