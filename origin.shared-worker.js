@@ -26,7 +26,6 @@ const PortStreams = (port) => [
 ];
 //const [ReadablePort,WritablePort] = PortStreams(port) 
 
-
 globalThis.onconnect = ({ports:[port]}) => {
     port.onmessage = async (launch) => {    
         if (data.startsWith('function') || data.startsWith('()')) {
