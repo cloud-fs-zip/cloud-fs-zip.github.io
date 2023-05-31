@@ -37,12 +37,10 @@ globalThis.onconnect = ({ports:[port]}) => {
     port.onmessage = async (launch) => {    
         if (data.startsWith('function') || data.startsWith('()')) {
             const [ReadablePort,WritablePort] = PortStreams(port);
+            // the receiver destructures [stdout,stderr] } = output
             port.stream = ReadablePort.pipeThrough(
                 (await new Function(`return ${launch}`)())
-            ).pipeTo(
-                // the receiver destructures [stdout,stderr] } = output
-                WritablePort
-            );
+            ).pipeTo(WritablePort);
         } else {
             const exampleFunction = async () => await new TransformStream();
             new Error(`did you forget to postMessage(${exampleFunction})?`)
