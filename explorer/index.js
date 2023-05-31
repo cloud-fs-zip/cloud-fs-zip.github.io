@@ -4,7 +4,7 @@ Object.keys(self.webPackagePaths).map(function (key, index) {
 	self.webPackagePaths[key] = `${window.location.origin}/lib/node_modules/vscode-web/dist/node_modules/${key}/${self.webPackagePaths[key]}`;
 });
 require.config({
-	baseUrl: `${window.location.origin}/lib/node_modules/vscode-web/dist/out`,
+	baseUrl: `${window.location.origin}/lib/node_modules/vscode-web/dist`,
 	recordStats: true,
 	trustedTypesPolicy: window.trustedTypes?.createPolicy('amdLoader', {
 		createScriptURL(value) {
