@@ -39,11 +39,9 @@ globalThis.onconnect = ({ports:[port]}) => {
             new Error(`did you forget to postMessage(${exampleFunction})?`)
         }
     }
-}
+};
 
-
-
-const launch = (launch,stdin,output) => {
+export const launch = (launch,stdin,output) => {
     const processor = new SharedWorker(importUrl);
     processor.postMessage(launch);
     stdin.pipeTo(new WritableStream({ write(input){ processor.postMessage(input); }}));
