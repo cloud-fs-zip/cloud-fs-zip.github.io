@@ -2,7 +2,7 @@
 // npm install --prefix $PWD -g vscode-web
 
 require.config({
-	baseUrl: `${new URL('.',document.location)}lib/node_modules/vscode-web/dist/out`,
+	baseUrl: `${new URL('.',document.location)}lib/node_modules/vscode-web/dist/out/node_modules`,
 	recordStats: true,
 	trustedTypesPolicy: window.trustedTypes?.createPolicy('amdLoader', {
 		createScriptURL(value) {
