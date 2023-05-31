@@ -26,7 +26,9 @@
 	<script src="./node_modules/vscode-web/dist/out/vs/loader.js"></script>
 	<script src="./node_modules/vscode-web/dist/out/vs/webPackagePaths.js"></script>
 	<script>
-		
+		Object.entries(self.webPackagePaths).map(([key, value]) => 
+				[key,`${new URL(`./node_modules/vscode-web/dist/node_modules/${key}/${value}`,window.location)}`]
+			)
 		require.config({
 			baseUrl: `${new URL('./node_modules/vscode-web/dist/out/',window.location)}`,
 			recordStats: true,
