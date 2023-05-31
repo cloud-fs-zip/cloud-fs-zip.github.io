@@ -12,7 +12,7 @@
 		  "https://openvsxorg.blob.core.windows.net/resources/{publisher}/{name}/{version}/{path}"
 	  },
 	  "extensionEnabledApiProposals": {
-		"awesome-os.code-oss-cloud-fs": [
+		"opfs.zip.explorer": [
 		  "fileSearchProvider",
 		  "textSearchProvider"
 		]
