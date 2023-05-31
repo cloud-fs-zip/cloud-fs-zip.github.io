@@ -25,14 +25,14 @@ const readEverything =     new ReadableStream({ async start(progress){
 globalThis.onconnect = ({ports:[port]}) => {
     port.onmessage = async (launch) => {    
         if (data.startsWith('function') || data.startsWith('()')) {
-            port.stream = new ReadableStream({ start(stdin) {
-                port.onmessage = (input) => stdin.enqueue(input);
-            }}).pipeThrough(
-                (await new Function(`return ${launch}`)())).pipeTo(
-                    new WritableStream({write(output){
-                    // the receiver destructures [stdout,stderr] } = output
-                    port.postMessage(output);
-                }}))
+            port.stream = new ReadableStream(
+                { start(stdin) { port.onmessage = (input) => stdin.enqueue(input); }}
+            ).pipeThrough(
+                (await new Function(`return ${launch}`)())
+            ).pipeTo(
+                // the receiver destructures [stdout,stderr] } = output
+                new WritableStream({write(output){ port.postMessage(output); }})
+            )
         } else {
             const exampleFunction = async () => await new TransformStream();
             new Error(`did you forget to postMessage(${exampleFunction})?`)
