@@ -11,15 +11,9 @@ const readEverything =     new ReadableStream({ async start(progress){
     }
 }});
 
-({ data: { run, ...data }}) => {
-                if (run) {
-                    try {
-                    // sharedWorker.tasks[id].readable //.pipeThough(new TransformStream({transform(watch,observer){ observer.enqueue(watch); }}))
-                    // .pipeTo(sharedWorker.tasks[id].writable);
-                    } catch(stderr) {
-                        port.postMessage({ id, output: { stderr }})
-                    }
-                }
+// sharedWorker.tasks[id].readable //.pipeThough(new TransformStream({transform(watch,observer){ observer.enqueue(watch); }}))
+// .pipeTo(sharedWorker.tasks[id].writable);
+
 */
 const PortStreams = (port) => [
     new ReadableStream({start(output){ 
@@ -57,11 +51,11 @@ export const launch = (launch,stdin,output) => {
     return ReadablePort.pipeTo(output);
 };
 
-globalThis.window && launch('()=>new TransformStream()',new ReadableStream({start(stdin){
-   globalThis.onmessage = msg => stdin.enqueue(msg);
-}}),new WritableStream({write([stdout,stderr]){
-
-}}));
+// globalThis.window && launch('()=>new TransformStream()',new ReadableStream({start(stdin){
+//    globalThis.onmessage = msg => stdin.enqueue(msg);
+// }}),new WritableStream({write([stdout,stderr]){
+// 
+// }}));
 
 // const port = { 
 //     postMessage(msg){globalThis.postMessage(msg)}
