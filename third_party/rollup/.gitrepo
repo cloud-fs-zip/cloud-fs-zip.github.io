@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/lemanschik/rollup
 	branch = master
-	commit = c09b2896b274515f1e959320f495630013331372
-	parent = c09b2896b274515f1e959320f495630013331372
+	commit = 2df15889ec463279208c0b2dce117912dbe438ab
+	parent = 15123b405cbddcebe69996dbed53451f57870417
 	method = merge
 	cmdver = 0a31831
