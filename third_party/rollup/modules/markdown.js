@@ -1,0 +1,1 @@
+// Renders markdown when nodes get added as text to the observed elements. 

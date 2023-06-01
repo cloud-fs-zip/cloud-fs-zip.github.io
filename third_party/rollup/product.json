@@ -1,0 +1,31 @@
+{
+	"productConfiguration": {
+	  "nameShort": "opfs.zip",
+	  "nameLong": "opfs.zip",
+	  "applicationName": "opfs.zip",
+	  "dataFolderName": ".opfs.zip",
+	  "version": "1.75.0",
+	  "extensionsGallery": {
+		"serviceUrl": "https://open-vsx.org/vscode/gallery",
+		"itemUrl": "https://open-vsx.org/vscode/item",
+		"resourceUrlTemplate":
+		  "https://openvsxorg.blob.core.windows.net/resources/{publisher}/{name}/{version}/{path}"
+	  },
+	  "extensionEnabledApiProposals": {
+		"opfs.zip.explorer": [
+		  "fileSearchProvider",
+		  "textSearchProvider"
+		]
+	  }
+	},
+	"folderUri": {
+	  "scheme": "memfs",
+	  "path": "/sample-folder"
+	},
+	"additionalBuiltinExtensions": [
+	  {
+		"scheme": "https",
+		"path": "/extensions/workbench/explorer"
+	  }
+	]
+  }
