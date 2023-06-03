@@ -1,4 +1,9 @@
 // internal
+declare module 'hash.js/lib/hash/sha/1.js' {
+	const digest: (format: string) => string;
+	const update: (data: unknown) => unknown;
+}
+
 declare module 'help.md' {
 	const value: string;
 	export default value;
