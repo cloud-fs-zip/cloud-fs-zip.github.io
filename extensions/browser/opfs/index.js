@@ -1,9 +1,10 @@
 const html = (str) => str;
 window.addEventListener("DOMContentLoaded", (_event) => {
-const worker = `
 const getRandomValues = () => {
     return Array.from({length: 50}, () => Math.floor(Math.random() * 50)).join('');
 };
+const worker = `
+${getRandomValues}
 
 (async () => {
     const root = await navigator.storage.getDirectory();
