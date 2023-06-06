@@ -24,8 +24,8 @@ const getRandomValues = ${getRandomValues};
 const url = URL.createObjectURL(blob);
 new Worker(url);
 
-const html = (str,...args) => str.reduce((acc, curr, ind) => 
-    (acc += curr + (args[ind]||'')), "");
+const html = (str,...args) => str.reduce((acc, curr, i) => 
+    (acc += curr + (args[i]||'')), "");
 
 document.body.innerHTML = html`
 <style>
