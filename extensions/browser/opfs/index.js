@@ -24,10 +24,10 @@ const getRandomValues = ${getRandomValues};
 const url = URL.createObjectURL(blob);
 new Worker(url);
 
-const html = (str,...args) => reduce((acc, curr, ind) => {
-    acc.push([curr, args[ind]]);
+const html = (str,...args) => str.reduce((acc, curr, ind) => {
+    acc += curr + args[ind];
     return acc;
-  }, str);
+  }, "");
 document.body.innerHTML = html`
 <style>
 :root {
