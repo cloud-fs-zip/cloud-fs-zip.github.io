@@ -23,7 +23,8 @@ const getRandomValues = ${getRandomValues};
 (${workerSource})();`], { type: "text/javascript" });
 const url = URL.createObjectURL(blob);
 new Worker(url);
-const html = (str) => str;
+
+const html = (str) => str.join('');
 document.body.innerHTML = html`
 <style>
 :root {
