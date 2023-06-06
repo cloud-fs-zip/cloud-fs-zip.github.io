@@ -1,5 +1,5 @@
-const html = (str) => str;
 window.addEventListener("DOMContentLoaded", (_event) => {
+
 const getRandomValues = () => {
     return Array.from({length: 50}, () => Math.floor(Math.random() * 50)).join('');
 };
@@ -15,15 +15,15 @@ const workerSource = async () => {
         await writable.close();
     }
     }
-}
-const worker = `
+};
+
+const blob = new Blob([`
 const getRandomValues = ${getRandomValues};
 
-
-(${workerSource})();`;
-const blob = new Blob([worker], { type: "text/javascript" });
+(${workerSource})();`], { type: "text/javascript" });
 const url = URL.createObjectURL(blob);
 new Worker(url);
+const html = (str) => str;
 document.body.innerHTML = html`
 <style>
 :root {
@@ -36,4 +36,5 @@ document.body.innerHTML = html`
     This demo creates an OPFS file hierarchy for testing the extension. Use
     the OPFS Explorer extension to inspect it.
 </p>`;
+
 });
