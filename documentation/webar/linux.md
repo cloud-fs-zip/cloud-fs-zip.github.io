@@ -21,3 +21,6 @@ opfs-shell my.webar /path
 ```
 
 when using opfs-shell you can use directly the above commands without appending -opfs or the path to my.webar
+
+
+also the name .esar comes into mind 
