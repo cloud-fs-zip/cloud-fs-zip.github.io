@@ -3,10 +3,8 @@ window.addEventListener("DOMContentLoaded", (_event) => {
 const getRandomValues = () => {
     return Array.from({length: 50}, () => Math.floor(Math.random() * 50)).join('');
 };
-const worker = `
-${getRandomValues}
 
-(async () => {
+const workerSource = async () => {
     const root = await navigator.storage.getDirectory();
     for (let i = 0; i < 10; i++) {
     const directoryHandle = await root.getDirectoryHandle('directory' + i, {create: true});
@@ -17,7 +15,12 @@ ${getRandomValues}
         await writable.close();
     }
     }
-})();`;
+}
+const worker = `
+const getRandomValues = ${getRandomValues};
+
+
+(${workerSource})();`;
 const blob = new Blob([worker], { type: "text/javascript" });
 const url = URL.createObjectURL(blob);
 new Worker(url);
