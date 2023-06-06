@@ -14,7 +14,10 @@ it is like js but with optional markdown comments
 ```ts
 /** @markdown {id}  
  * 
- * 
+ * THis is not part of the output markdown 
+   # while this is
+   you can see me now as i am not prefixed with a * 
+ * and this not again
 */
 
 /** @md {id}  
