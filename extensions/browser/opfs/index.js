@@ -1,3 +1,4 @@
+const html = (str) => str
 window.addEventListener("DOMContentLoaded", (event) => {
     const worker = `
     const getRandomValues = () => {
@@ -19,7 +20,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const blob = new Blob([worker], { type: "text/javascript" });
     const url = URL.createObjectURL(blob);
     new Worker(url);
-    document.body.innerHTML = `<h1>OPFS Explorer Demo</h1>
+    document.body.innerHTML = `<style>
+    :root {
+      color-scheme: dark light;
+      font-family: system-ui, sans-serif;
+    }
+  </style>
+    <h1>OPFS Explorer Demo</h1>
     <p>
       This demo creates an OPFS file hierarchy for testing the extension. Use
       the OPFS Explorer extension to inspect it.
