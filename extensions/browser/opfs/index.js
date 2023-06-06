@@ -27,7 +27,7 @@ new Worker(url);
 const html = (str,...args) => str.reduce((acc, curr, ind) => {
     acc += curr + args[ind];
     return acc;
-  }, "");
+}, "");
 document.body.innerHTML = html`
 <style>
 :root {
